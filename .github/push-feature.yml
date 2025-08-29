@@ -4,8 +4,7 @@ name: Push to Feature
 on:
   push:
     branches:
-      - 'feature/**'  # דוגמה: feature/login/ui
-      - 'feature-*'   # דוגמה: feature-auth
+          - 'feature-*'   # דוגמה: feature-auth
 
 jobs:
   echo:
