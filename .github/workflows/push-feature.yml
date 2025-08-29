@@ -5,6 +5,8 @@ on:
   push:
     branches:
           - 'feature-*'   # דוגמה: feature-auth
+          - 'feature/**'
+
 
 jobs:
   echo:
