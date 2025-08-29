@@ -1,0 +1,19 @@
+# Workflow זה רץ כשיש push לענף main
+name: Push to Main
+
+on:
+  push:
+    branches: [ main ]  # האזנה ל-push רק ל-main
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest  # רץ על Runner מתארח של GitHub
+    steps:
+      # אין צורך ב-checkout כי אנחנו רק מדפיסים הודעות
+      - name: Echo push to main
+        run: |
+          # מידע שימושי מה-context של GitHub Actions
+          echo "Event=${{ github.event_name }}"   # שם האירוע: push
+          echo "Branch=${{ github.ref_name }}"    # שם הענף
+          echo "Actor=${{ github.actor }}"        # מי הפעיל את ה-run
+          echo "Push to main fired!"              # ההודעה העיקרית של המטלה

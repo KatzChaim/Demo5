@@ -1,0 +1,20 @@
+# Workflow זה רץ כשפותחים Pull Request שה-base שלו main
+name: PR Opened
+
+on:
+  pull_request:
+    types: [opened]    # רק בעת פתיחת PR
+    branches: [ main ] # ה-PR מופנה ל-main (base=main)
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo PR opened
+        run: |
+          echo "Event=${{ github.event_name }}"                     # pull_request
+          echo "Action=${{ github.event.action }}"                  # opened
+          echo "PR #=${{ github.event.pull_request.number }}"       # מספר ה-PR
+          echo "Head=${{ github.event.pull_request.head.ref }}"     # ענף המקור
+          echo "Base=${{ github.event.pull_request.base.ref }}"     # ענף היעד (main)
+          echo "Pull request opened fired!"                         # הודעת אימות

@@ -1,0 +1,18 @@
+# Workflow זה רץ כשה-PR מסתנכרן (כלומר מגיע עוד push לענף ה-head של ה-PR)
+name: PR Synchronize
+
+on:
+  pull_request:
+    types: [synchronize] # כשיש עדכון תוכן ב-PR
+    branches: [ main ]   # רק ל-PR שמכוון ל-main
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo PR synchronize
+        run: |
+          echo "Event=${{ github.event_name }}"               # pull_request
+          echo "Action=${{ github.event.action }}"            # synchronize
+          echo "PR #=${{ github.event.pull_request.number }}" # מספר ה-PR
+          echo "Pull request synchronize fired!"              # הודעת אימות

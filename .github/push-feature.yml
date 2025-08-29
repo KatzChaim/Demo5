@@ -1,0 +1,19 @@
+# Workflow זה רץ כשיש push לענפי feature (שני דפוסים נפוצים)
+name: Push to Feature
+
+on:
+  push:
+    branches:
+      - 'feature/**'  # דוגמה: feature/login/ui
+      - 'feature-*'   # דוגמה: feature-auth
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo push to feature
+        run: |
+          echo "Event=${{ github.event_name }}"   # push
+          echo "Branch=${{ github.ref_name }}"    # שם הענף בפועל
+          echo "Actor=${{ github.actor }}"
+          echo "Push to feature branch fired!"    # הודעת אימות

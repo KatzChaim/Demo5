@@ -1,0 +1,18 @@
+# Workflow זה רץ כשמגישים Review ל-PR (Approve/Comment/Request changes)
+name: PR Review Submitted
+
+on:
+  pull_request_review:
+    types: [submitted]  # כאשר review נשלח (submit)
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo PR review submitted
+        run: |
+          echo "Event=${{ github.event_name }}"                            # pull_request_review
+          echo "Action=${{ github.event.action }}"                         # submitted
+          echo "PR #=${{ github.event.pull_request.number }}"              # מספר ה-PR
+          echo "Review state=${{ github.event.review.state }}"             # APPROVED / COMMENTED / CHANGES_REQUESTED
+          echo "Pull request review submitted fired!"                      # הודעת אימות

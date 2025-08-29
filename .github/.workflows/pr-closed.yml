@@ -1,0 +1,19 @@
+# Workflow זה רץ כשסוגרים PR (כולל Merge). נוכל לדעת אם זה merge לפי שדה merged.
+name: PR Closed
+
+on:
+  pull_request:
+    types: [closed]  # אירוע סגירת PR (כולל merge)
+    branches: [ main ]
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo PR closed
+        run: |
+          echo "Event=${{ github.event_name }}"                       # pull_request
+          echo "Action=${{ github.event.action }}"                    # closed
+          echo "PR #=${{ github.event.pull_request.number }}"         # מספר ה-PR
+          echo "Merged=${{ github.event.pull_request.merged }}"       # true = נסגר במיזוג, false = נסגר בלי מיזוג
+          echo "Pull request closed fired!"                           # הודעת אימות
